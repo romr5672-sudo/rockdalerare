@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isMainAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == "romr5672@gmail.com"
+        || (
+          exists(/databases/$(database)/documents/config/bootstrap)
+          && get(/databases/$(database)/documents/config/bootstrap).data.adminUid == request.auth.uid
+        )
+      );
+    }
+
+    match /config/bootstrap {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && !exists(/databases/$(database)/documents/config/bootstrap)
+        && request.resource.data.adminUid == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId;
+      allow update: if request.auth != null && request.auth.uid == userId;
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /licenseKeys/{key} {
+      allow create: if isMainAdmin()
+        && key.size() >= 16
+        && request.resource.data.used == false
+        && request.resource.data.tier in ["14d", "1y", "lifetime"];
+
+      allow read: if request.auth != null && key.size() >= 16;
+
+      allow update: if request.auth != null
+        && resource.data.used == false
+        && request.resource.data.used == true
+        && request.resource.data.usedBy == request.auth.uid
+        && request.resource.data.tier == resource.data.tier;
+
+      allow delete: if isMainAdmin();
+    }
+
+    match /promoCodes/{code} {
+      allow create: if isMainAdmin() && code.size() >= 3;
+
+      allow read: if request.auth != null && code.size() >= 3;
+
+      allow update: if isMainAdmin()
+        || (
+          request.auth != null
+          && resource.data.active == true
+          && resource.data.uses < resource.data.maxUses
+          && request.resource.data.active == resource.data.active
+          && request.resource.data.maxUses == resource.data.maxUses
+          && request.resource.data.bonusDays == resource.data.bonusDays
+          && request.resource.data.uses == resource.data.uses + 1
+        );
+
+      allow delete: if isMainAdmin();
+    }
+  }
+}

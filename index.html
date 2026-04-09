@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rockdale — клиент для Minecraft, подписка." />
+  <title>Rockdale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="header">
+    <a class="logo" href="#top">R<span class="logo-accent">o</span>ckdale</a>
+    <div class="header-tools">
+      <div id="header-auth-guest" class="header-auth">
+        <button type="button" class="btn btn-ghost btn-sm" data-open-modal="login">Вход</button>
+        <button type="button" class="btn btn-primary btn-sm" data-open-modal="register">Регистрация</button>
+      </div>
+      <div id="header-auth-user" class="header-auth" hidden>
+        <button type="button" class="btn btn-ghost btn-sm" data-open-modal="cabinet">Кабинет</button>
+      </div>
+    </div>
+    <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#pricing">Тарифы</a>
+      <a href="#features">Особенности</a>
+      <a href="#contact" class="nav-cta" id="nav-link-contact">Связь</a>
+      <button type="button" class="nav-cta nav-cta--btn" id="nav-link-logout" hidden>Выйти</button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <p id="firebase-banner" class="firebase-banner" hidden></p>
+
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-kicker">Minecraft · Rockdale</p>
+        <h1 class="hero-title">
+          <span class="hero-brand">R<span class="logo-accent">o</span>ckdale</span>
+          <span class="hero-line">функционал, обновления, подписка</span>
+        </h1>
+        <p class="hero-lead">
+          Купите доступ на FunPay, активируйте ключ в личном кабинете — скачивание лаунчера доступно там же при активной подписке.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pricing">Купить подписку</a>
+          <a class="btn btn-ghost" href="#account">Кабинет</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <span>Листайте</span>
+        <span class="hero-scroll-line"></span>
+      </div>
+    </section>
+
+    <section id="pricing" class="section pricing">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">01</span>
+          <h2>Тарифы</h2>
+          <p class="section-desc">Оплата через FunPay. После покупки получите ключ и активируйте его в кабинете.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <span class="price-badge">14 дней</span>
+            <h3>Старт</h3>
+            <p class="price-note">Короткий доступ</p>
+            <a class="btn btn-primary btn-block" data-funpay href="#">Купить на FunPay</a>
+          </article>
+          <article class="price-card price-card--featured">
+            <span class="price-badge price-badge--hot">1 год</span>
+            <h3>Год</h3>
+            <p class="price-note">На длительный срок</p>
+            <a class="btn btn-primary btn-block" data-funpay href="#">Купить на FunPay</a>
+          </article>
+          <article class="price-card">
+            <span class="price-badge">Навсегда</span>
+            <h3>Навсегда</h3>
+            <p class="price-note">Без срока</p>
+            <a class="btn btn-primary btn-block" data-funpay href="#">Купить на FunPay</a>
+          </article>
+        </div>
+        <p class="pricing-funpay">Профиль на <a href="https://funpay.com/users/11584581/" target="_blank" rel="noopener noreferrer">FunPay</a>.</p>
+      </div>
+    </section>
+
+    <section id="features" class="section services">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">02</span>
+          <h2>Особенности</h2>
+        </div>
+        <div class="cards cards--two">
+          <article class="card">
+            <span class="card-num">01</span>
+            <h3>Хороший функционал</h3>
+            <p>Продуманные возможности и стабильная работа.</p>
+          </article>
+          <article class="card">
+            <span class="card-num">02</span>
+            <h3>Частые обновления</h3>
+            <p>Регулярные выпуски и улучшения.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="account" class="section account">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">03</span>
+          <h2>Личный кабинет</h2>
+          <p class="section-desc">Профиль, активация ключа. Первый зарегистрировавшийся пользователь получает права администратора и может создавать ключи и промокоды здесь же.</p>
+        </div>
+
+        <div id="account-guest-hint" class="account-guest-hint">
+          <p>Вход и регистрация — в отдельных окнах. Личный кабинет откроется после входа.</p>
+          <div class="account-guest-actions">
+            <button type="button" class="btn btn-ghost" data-open-modal="login">Вход</button>
+            <button type="button" class="btn btn-primary" data-open-modal="register">Регистрация</button>
+          </div>
+        </div>
+
+        <div id="account-logged-teaser" class="account-guest-hint" hidden>
+          <p>Вы вошли. Откройте кабинет, чтобы увидеть профиль, активировать ключ и скачать лаунчер.</p>
+          <button type="button" class="btn btn-primary" data-open-modal="cabinet">Открыть личный кабинет</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="container contact-inner">
+        <div class="contact-copy">
+          <span class="section-label">04</span>
+          <h2>Связь</h2>
+          <p>Вопросы — через FunPay или форму ниже.</p>
+        </div>
+        <form class="contact-form" action="#" method="post">
+          <label>
+            <span>Имя</span>
+            <input type="text" name="name" autocomplete="name" required placeholder="Как к вам обращаться" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="you@company.com" />
+          </label>
+          <label class="full">
+            <span>Сообщение</span>
+            <textarea name="message" rows="4" required placeholder="Кратко опишите вопрос"></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="logo footer-logo" href="#top">R<span class="logo-accent">o</span>ckdale</a>
+      <p class="footer-copy">© <span id="year"></span> Rockdale</p>
+      <div class="footer-links">
+        <a href="https://funpay.com/users/11584581/" target="_blank" rel="noopener noreferrer">FunPay</a>
+        <a href="mailto:hello@wind.studio">hello@wind.studio</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="modal-login" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-login-title" hidden>
+    <div class="modal-backdrop" data-close-modal tabindex="-1"></div>
+    <div class="modal-box">
+      <button type="button" class="modal-close" data-close-modal aria-label="Закрыть">×</button>
+      <h2 id="modal-login-title" class="modal-title">Вход</h2>
+      <p id="msg-login" class="modal-msg" role="status"></p>
+      <div class="auth-fields">
+        <label><span>Email</span><input id="login-email" type="email" autocomplete="email" /></label>
+        <label><span>Пароль</span><input id="login-pass" type="password" autocomplete="current-password" /></label>
+        <button id="btn-login" type="button" class="btn btn-primary btn-block">Войти</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-register" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-reg-title" hidden>
+    <div class="modal-backdrop" data-close-modal tabindex="-1"></div>
+    <div class="modal-box">
+      <button type="button" class="modal-close" data-close-modal aria-label="Закрыть">×</button>
+      <h2 id="modal-reg-title" class="modal-title">Регистрация</h2>
+      <p id="msg-register" class="modal-msg" role="status"></p>
+      <div class="auth-fields">
+        <label><span>Имя / ник</span><input id="reg-name" type="text" autocomplete="nickname" placeholder="Как к вам обращаться" /></label>
+        <label><span>Email</span><input id="reg-email" type="email" autocomplete="email" /></label>
+        <label><span>Пароль</span><input id="reg-pass" type="password" autocomplete="new-password" placeholder="Не менее 6 символов" /></label>
+        <label><span>Промокод (необязательно)</span><input id="reg-promo" type="text" autocomplete="off" placeholder="Для учёта" /></label>
+        <button id="btn-register" type="button" class="btn btn-primary btn-block">Создать аккаунт</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-cabinet" class="modal modal--cabinet" role="dialog" aria-modal="true" aria-labelledby="modal-cabinet-title" hidden>
+    <div class="modal-backdrop" data-close-modal tabindex="-1"></div>
+    <div class="modal-box modal-box--cabinet">
+      <button type="button" class="modal-close" data-close-modal aria-label="Закрыть">×</button>
+      <h2 id="modal-cabinet-title" class="modal-title">Личный кабинет</h2>
+      <p id="msg-cabinet" class="modal-msg" role="status"></p>
+
+      <div class="cabinet-scroll">
+        <div class="profile-card profile-card--inmodal">
+          <h3 class="auth-title">Профиль</h3>
+          <p class="user-line"><strong>Email:</strong> <span id="user-email"></span></p>
+          <p class="user-line"><strong>Имя:</strong> <span id="user-displayname">—</span></p>
+          <p class="user-line"><strong>Подписка:</strong> <span id="sub-status">—</span></p>
+          <p id="admin-badge" class="admin-badge" hidden>Вы администратор</p>
+        </div>
+
+        <div id="cabinet-download-wrap" class="profile-card profile-card--inmodal cabinet-download-wrap" hidden>
+          <h3 class="auth-title">Скачать лаунчер</h3>
+          <p class="cabinet-download-hint">Доступно при активной подписке.</p>
+          <a
+            id="cabinet-download-btn"
+            class="btn btn-primary btn-block"
+            href="https://www.dropbox.com/scl/fi/tjknmoxpg1px555ta25zj/loader.exe?rlkey=kdkrw6kg1v88pekdy1sabgxqe&st=6dsefa8z&dl=1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Скачать loader.exe</a>
+        </div>
+
+        <div class="profile-card profile-card--inmodal">
+          <h3 class="auth-title">Активировать ключ</h3>
+          <div class="auth-fields">
+            <label><span>Ключ</span><input id="redeem-key" type="text" autocomplete="off" placeholder="Ключ с FunPay" /></label>
+            <label><span>Промокод (необязательно)</span><input id="redeem-promo" type="text" autocomplete="off" placeholder="Бонусные дни" /></label>
+            <button id="btn-redeem" type="button" class="btn btn-primary btn-block">Активировать</button>
+          </div>
+        </div>
+
+        <div id="admin-panel" class="profile-card profile-card--inmodal admin-panel" hidden>
+          <h3 class="auth-title">Админ: ключи</h3>
+          <div class="auth-fields admin-row">
+            <label><span>Тип подписки</span>
+              <select id="admin-key-tier">
+                <option value="14d">14 дней</option>
+                <option value="1y">1 год</option>
+                <option value="lifetime">Навсегда</option>
+              </select>
+            </label>
+            <button type="button" class="btn btn-primary" id="admin-gen-key">Создать ключ</button>
+          </div>
+          <pre id="admin-key-out" class="admin-key-out" hidden></pre>
+
+          <h3 class="auth-title auth-title--second">Админ: промокод</h3>
+          <div class="auth-fields">
+            <label><span>Код</span><input id="admin-promo-code" type="text" placeholder="Например SUMMER" /></label>
+            <label><span>Бонус, дней</span><input id="admin-promo-bonus" type="number" min="0" value="3" /></label>
+            <label><span>Макс. использований</span><input id="admin-promo-max" type="number" min="1" value="100" /></label>
+            <button type="button" class="btn btn-primary" id="admin-save-promo">Сохранить промокод</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
+  <script type="module" src="auth-app.js"></script>
+</body>
+</html>
